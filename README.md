@@ -31,3 +31,8 @@ We can resume the steps into:
 - Create training and test dataset
 - Training the model
 - Evaluating the model to new data
+
+# More info
+https://keras.io/
+https://en.wikipedia.org/wiki/Linear_regression
+https://medium.com/quick-code/regression-versus-classification-machine-learning-whats-the-difference-345c56dd15f7
