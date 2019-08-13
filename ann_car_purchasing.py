@@ -13,8 +13,8 @@ import seaborn as sns
 
 # Import dataset
 df = pd.read_csv('car_purchasing_data.csv', sep=',', encoding='ISO-8859-1')
-df.info()  # info about type variables
-df.head()  # 5 rows
+df.info()  # info about variables
+df.head()  # get the first 5 rows of dataframe
 
 
 ## Visualize Dataset (correlation, distribuition,...)
@@ -51,24 +51,39 @@ X_train, X_test, y_train, y_test = train_test_split(X_scaled,
 
 
 # Training the model
-import tensorflow.keras
 from keras.models import Sequential
 from keras.layers import Dense
 
+# create model
 model = Sequential()
 model.add(Dense(5, input_dim = 5, activation= 'relu'))
 model.add(Dense(10, activation= 'relu'))
 model.add(Dense(5, activation= 'relu'))
-
 # output (predict certain values)
 model.add(Dense(1, activation= 'linear'))
 
+# infos about model parameters
 model.summary()
 
+"""
+    x: Numpy array of training data (if the model has a single input), or
+       list of Numpy arrays (if the model has multiple inputs).
+    y: Numpy array of target (label) data (if the model has a single output),
+       or list of Numpy arrays (if the model has multiple outputs)
+    epochs: Integer. Number of epochs to train the model. An epoch is an
+            iteration over the entire x and y data provided.
+    batch_size: Integer or None. Number of samples per gradient update. If
+                unspecified, batch_size will default to 32.
+    validation_split: Float. Fraction of images reserved for validation
+                      (strictly between 0 and 1).
+    verbose: Integer. 0, 1, or 2. Verbosity mode. 0 = silent, 1 = progress
+                      bar, 2 = one line per epoch.
+"""
+# compile model
 model.compile(optimizer= 'adam', loss= 'mse')
 epochs_hist = model.fit(X_train,
                         y_train,
-                        epochs= 50,
+                        epochs= 100,
                         batch_size= 25,
                         verbose= 1,
                         validation_split=0.2)
@@ -87,13 +102,3 @@ plt.legend(['Training Loss', 'Validation Loss'])
 X_testNEW = np.array([[1, 50, 50000, 10000, 600000]])
 y_predict = model.predict(X_testNEW)
 print('Expected Purchase Amount: ', y_predict)
-
-
-
-
-
-
-
-
-
-
