@@ -102,3 +102,4 @@ plt.legend(['Training Loss', 'Validation Loss'])
 X_testNEW = np.array([[1, 50, 50000, 10000, 600000]])
 y_predict = model.predict(X_testNEW)
 print('Expected Purchase Amount: ', y_predict)
+
